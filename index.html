@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For Natalia ❤️</title>
+  <style>
+    :root{
+      --bgA:#0f1020;
+      --bgB:#1b1c3a;
+      --pink:#ff4d6d;
+      --pink2:#ff8fab;
+      --mint:#7cf7d4;
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.16);
+      --stroke: rgba(255,255,255,.18);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --shadow: 0 24px 70px rgba(0,0,0,.42);
+      --radius: 26px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      overflow:hidden;
+      background: radial-gradient(1000px 700px at 20% 10%, rgba(255,77,109,.25) 0%, transparent 60%),
+                  radial-gradient(900px 650px at 80% 30%, rgba(124,247,212,.18) 0%, transparent 55%),
+                  linear-gradient(135deg, var(--bgA), var(--bgB));
+    }
+
+    /* subtle animated noise overlay */
+    .noise{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.25;
+      animation: drift 14s linear infinite;
+    }
+    @keyframes drift{
+      from{ transform:translate3d(0,0,0); }
+      to{ transform:translate3d(-120px,-120px,0); }
+    }
+
+    /* animated blobs */
+    .blob{
+      position:fixed;
+      width: 480px;
+      height: 480px;
+      border-radius: 999px;
+      filter: blur(38px);
+      opacity: .35;
+      transform: translate3d(0,0,0);
+      animation: blobMove 14s ease-in-out infinite;
+    }
+    .blob.b1{
+      left:-120px; top:-120px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,77,109,.9), rgba(255,77,109,0));
+    }
+    .blob.b2{
+      right:-160px; bottom:-160px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,247,212,.75), rgba(124,247,212,0));
+      animation-duration: 18s;
+      animation-direction: alternate-reverse;
+    }
+    @keyframes blobMove{
+      0%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(50px,30px) scale(1.08); }
+      100%{ transform: translate(10px,60px) scale(.98); }
+    }
+
+    /* layout */
+    .wrap{
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding: 24px;
+      position:relative;
+      z-index:2;
+    }
+
+    .card{
+      width:min(620px, 92vw);
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow:hidden;
+      position:relative;
+      transform: translateY(12px);
+      opacity:0;
+      animation: enter .9s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+    @keyframes enter{
+      to{ transform: translateY(0); opacity:1; }
+    }
+
+    .topline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing:.2px;
+      user-select:none;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--mint), rgba(124,247,212,.2));
+      box-shadow: 0 0 18px rgba(124,247,212,.55);
+    }
+
+    h1{
+      margin: 6px 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .grad{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.86), rgba(255,255,255,.70));
+      -webkit-background-clip: text;
+      background-clip:text;
+      color: transparent;
+    }
+    .sub{
+      margin:0 0 14px;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.55;
+    }
+
+    .quote{
+      padding: 16px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      position:relative;
+      overflow:hidden;
+      margin: 10px 0 16px;
+    }
+    .quote::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(380px 180px at 20% 0%, rgba(255,77,109,.26), transparent 55%),
+                  radial-gradient(340px 220px at 90% 100%, rgba(124,247,212,.18), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .quote p{
+      margin:0;
+      position:relative;
+      z-index:1;
+      font-size: 15px;
+      color: rgba(255,255,255,.86);
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      margin-top: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor:pointer;
+      color: rgba(255,255,255,.95);
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      box-shadow: 0 16px 40px rgba(255,77,109,.28);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+      touch-action:manipulation;
+    }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(0); filter: brightness(.98); }
+
+    .ghost{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: none;
+      color: rgba(255,255,255,.88);
+    }
+    .ghost:hover{ box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+
+    /* reveal message */
+    .reveal{
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px dashed rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+      padding: 14px 14px;
+      overflow:hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: max-height .55s ease, opacity .35s ease .08s, transform .35s ease .08s;
+    }
+    .reveal.open{
+      max-height: 260px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal h2{
+      margin: 0 0 6px;
+      font-size: 17px;
+      letter-spacing: -.01em;
+    }
+    .reveal p{
+      margin: 0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    /* Cheeky surprise box */
+    .cheekyBox{
+      margin-top:16px;
+      position:relative;
+      height:0;
+      overflow:hidden;
+      transition: height .6s cubic-bezier(.2,.8,.2,1);
+      perspective: 900px;
+    }
+    .cheekyBox.open{
+      height: 230px;
+    }
+    .cheekyLid{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:50px;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      border-radius:18px 18px 8px 8px;
+      transform-origin: top;
+      transform: rotateX(0deg);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1);
+      z-index:2;
+      box-shadow: 0 12px 30px rgba(255,77,109,.35);
+    }
+    .cheekyBox.open .cheekyLid{
+      transform: rotateX(120deg);
+    }
+    .cheekyContent{
+      position:absolute;
+      top:20px;
+      left:0;
+      right:0;
+      bottom:0;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:18px;
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .4s ease .25s, transform .4s ease .25s;
+      overflow:auto;
+    }
+    .cheekyContent h2{
+      margin: 0 0 6px;
+      font-size: 17px;
+      letter-spacing: -.01em;
+    }
+    .cheekyContent p{
+      margin: 0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .cheekyBox.open .cheekyContent{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* "Will you be my Valentine" modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      padding: 24px;
+      background: rgba(10,10,25,.55);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .25s ease;
+      z-index: 50;
+    }
+    .modal.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .modalCard{
+      width:min(520px, 92vw);
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+      transform: translateY(12px) scale(.98);
+      transition: transform .25s ease;
+    }
+    .modal.open .modalCard{
+      transform: translateY(0) scale(1);
+    }
+    .modalTitle{
+      font-size: 22px;
+      margin: 0 0 6px;
+      letter-spacing:-.01em;
+    }
+    .modalText{
+      margin:0 0 16px;
+      color: rgba(255,255,255,.78);
+      line-height:1.5;
+      font-size: 15px;
+    }
+    .choiceArea{
+      position:relative;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      padding: 16px;
+      min-height: 130px;
+      overflow:hidden;
+    }
+    .choiceRow{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* Running away button: absolute inside choiceArea */
+    .noBtn{
+      position:absolute;
+      left: 170px;
+      top: 62px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: none;
+      color: rgba(255,255,255,.9);
+    }
+
+    .success{
+      margin-top: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(124,247,212,.28);
+      background: rgba(124,247,212,.10);
+      padding: 12px 12px;
+      display:none;
+    }
+    .success.show{ display:block; }
+    .success p{
+      margin:0;
+      color: rgba(255,255,255,.90);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    /* floating tiny hearts background */
+    .hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+    }
+    .h{
+      position:absolute;
+      width: 14px; height: 14px;
+      transform: rotate(45deg);
+      opacity:.22;
+      animation: rise linear infinite;
+      background: rgba(255,77,109,.9);
+      filter: blur(.2px);
+    }
+    .h::before, .h::after{
+      content:"";
+      position:absolute;
+      width: 14px; height: 14px;
+      border-radius:50%;
+      background: inherit;
+    }
+    .h::before{ top:-7px; left:0; }
+    .h::after{ left:-7px; top:0; }
+
+    @keyframes rise{
+      from{ transform: translateY(110vh) rotate(45deg) scale(.9); }
+      to  { transform: translateY(-15vh) rotate(45deg) scale(1.08); }
+    }
+
+    /* click burst hearts */
+    .burst{
+      position:fixed;
+      left:0; top:0;
+      width:10px; height:10px;
+      pointer-events:none;
+      z-index:60;
+    }
+    .burst .p{
+      position:absolute;
+      width: 10px; height: 10px;
+      transform: rotate(45deg);
+      opacity: .95;
+    }
+    .burst .p::before, .burst .p::after{
+      content:"";
+      position:absolute;
+      width: 10px; height: 10px;
+      border-radius:50%;
+      background: inherit;
+    }
+    .burst .p::before{ top:-5px; left:0; }
+    .burst .p::after{ left:-5px; top:0; }
+
+    .mini{
+      margin-top: 14px;
+      color: rgba(255,255,255,.55);
+      font-size: 12.5px;
+      text-align:center;
+      user-select:none;
+    }
+    .mini span{ color: rgba(255,255,255,.78); }
+  </style>
+</head>
+
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="noise"></div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="topline">
+        <div class="pill"><span class="dot"></span> for Natalia</div>
+        <div class="pill">❤️ Valentine Mode</div>
+      </div>
+
+      <h1 class="grad">Hi Natalia ❤️</h1>
+      <p class="sub">
+        I wanted to do something special, so I made you a tiny website.
+        If you smile even once, it already worked. 💖
+      </p>
+
+      <div class="quote">
+        <p>
+          “Some people make the world feel better and more bearable. You’re one of them and for me, you’re the one.” ❤️
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="openModal" type="button">Will you be my Valentine?</button>
+        <button class="btn ghost" id="revealBtn" type="button">Open my message</button>
+
+        <!-- NEW: cheeky button -->
+        <button class="btn ghost" id="cheekyBtn" type="button">Open something dangerous 😏</button>
+      </div>
+
+      <div class="reveal" id="reveal">
+        <h2>For you 💌</h2>
+        <p>
+          I’m really happy I got to meet you.<br>
+          I’d love to create more moments with you, one day at a time. ❤️
+        </p>
+      </div>
+
+      <!-- NEW: cheeky box -->
+      <div class="cheekyBox" id="cheekyBox">
+        <div class="cheekyLid"></div>
+        <div class="cheekyContent">
+          <h2>Well well well… 😌</h2>
+          <p>
+            You really opened this huh?<br><br>
+            Fine… 
+            <br><br>
+            I think you're ridiculously cute.<br>
+            Like… unfairly cute. 😤💖
+            <br><br>
+            So now you kinda owe me a smile.
+          </p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalCard">
+      <h2 class="modalTitle">Natalia… 💘</h2>
+      <p class="modalText">
+        Quick important question:
+      </p>
+
+      <div class="choiceArea" id="choiceArea">
+        <div class="choiceRow">
+          <button class="btn" id="yesBtn" type="button">Yes ❤️</button>
+        </div>
+
+        <!-- Running away button -->
+        <button class="btn noBtn" id="noBtn" type="button">No 🙈</button>
+      </div>
+
+      <div class="success" id="success">
+        <p>
+          YAY!! 🎉💖<br>
+          You just made my day. Now I owe you a cute date. 😌✨
+        </p>
+      </div>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="btn ghost" id="closeModal" type="button">Close</button>
+        <button class="btn ghost" id="burstBtn" type="button">Make it rain hearts</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // background floating hearts
+    const hearts = document.getElementById("hearts");
+    const COUNT = 26;
+
+    for(let i=0;i<COUNT;i++){
+      const h = document.createElement("div");
+      h.className = "h";
+      h.style.left = (Math.random()*100) + "vw";
+      h.style.animationDuration = (5 + Math.random()*6) + "s";
+      h.style.animationDelay = (-Math.random()*8) + "s";
+      h.style.opacity = (0.12 + Math.random()*0.28).toFixed(2);
+      h.style.transform = "rotate(45deg) scale(" + (0.7 + Math.random()*0.8).toFixed(2) + ")";
+      h.style.background = Math.random() < 0.7 ? "rgba(255,77,109,.95)" : "rgba(255,143,171,.95)";
+      hearts.appendChild(h);
+    }
+
+    // reveal message
+    const revealBtn = document.getElementById("revealBtn");
+    const reveal = document.getElementById("reveal");
+    revealBtn.addEventListener("click", (e) => {
+      reveal.classList.toggle("open");
+      burst(e.clientX, e.clientY);
+    });
+
+    // NEW: cheeky box toggle
+    const cheekyBtn = document.getElementById("cheekyBtn");
+    const cheekyBox = document.getElementById("cheekyBox");
+    cheekyBtn.addEventListener("click", (e) => {
+      cheekyBox.classList.toggle("open");
+      burst(e.clientX, e.clientY, 16);
+    });
+
+    // modal open/close
+    const modal = document.getElementById("modal");
+    const openModal = document.getElementById("openModal");
+    const closeModal = document.getElementById("closeModal");
+    const success = document.getElementById("success");
+
+    openModal.addEventListener("click", (e) => {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      success.classList.remove("show");
+      burst(e.clientX, e.clientY, 14);
+    });
+
+    closeModal.addEventListener("click", () => closeIt());
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeIt(); });
+
+    function closeIt(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    // YES button
+    document.getElementById("yesBtn").addEventListener("click", (e) => {
+      success.classList.add("show");
+      burst(e.clientX, e.clientY, 22);
+      // make no button chill after yes
+      noEscapes = false;
+    });
+
+    // Running away NO button logic
+    const noBtn = document.getElementById("noBtn");
+    const area = document.getElementById("choiceArea");
+    let noEscapes = true;
+
+    // move on hover / touchstart / pointerenter (mobile friendly)
+    ["mouseenter","pointerenter","touchstart"].forEach(evt => {
+      noBtn.addEventListener(evt, (e) => {
+        if(!noEscapes) return;
+        e.preventDefault?.();
+        runAway();
+      }, { passive:false });
+    });
+
+    // also move if user gets close (feels fun)
+    area.addEventListener("pointermove", (e) => {
+      if(!noEscapes) return;
+      const b = noBtn.getBoundingClientRect();
+      const dx = (b.left + b.width/2) - e.clientX;
+      const dy = (b.top + b.height/2) - e.clientY;
+      const dist = Math.hypot(dx, dy);
+      if(dist < 90) runAway();
+    });
+
+    function runAway(){
+      const areaRect = area.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      // bounds (keep button inside choice area)
+      const pad = 10;
+      const maxX = areaRect.width - btnRect.width - pad;
+      const maxY = areaRect.height - btnRect.height - pad;
+
+      // pick a new random spot, far-ish from current
+      let x, y, tries = 0;
+      const currentX = parseFloat(noBtn.style.left) || (btnRect.left - areaRect.left);
+      const currentY = parseFloat(noBtn.style.top)  || (btnRect.top  - areaRect.top);
+
+      do{
+        x = pad + Math.random() * maxX;
+        y = pad + Math.random() * maxY;
+        tries++;
+      } while(tries < 10 && Math.hypot(x-currentX, y-currentY) < 90);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top  = y + "px";
+
+      // tiny burst where it jumped
+      burst(areaRect.left + x + btnRect.width/2, areaRect.top + y + btnRect.height/2, 10);
+    }
+
+    // extra burst button
+    document.getElementById("burstBtn").addEventListener("click", (e) => {
+      burst(e.clientX, e.clientY, 18);
+    });
+
+    // heart burst effect
+    function burst(x, y, amount=12){
+      const b = document.createElement("div");
+      b.className = "burst";
+      b.style.transform = `translate(${x}px, ${y}px)`;
+      document.body.appendChild(b);
+
+      for(let i=0;i<amount;i++){
+        const p = document.createElement("div");
+        p.className = "p";
+        const angle = (Math.PI * 2) * (i/amount);
+        const dist = 60 + Math.random()*40;
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist;
+
+        const color = Math.random() < 0.55 ? "rgba(255,77,109,.95)" :
+                      (Math.random() < 0.5 ? "rgba(255,143,171,.95)" : "rgba(124,247,212,.9)");
+        p.style.background = color;
+
+        p.animate([
+          { transform: "translate(0,0) rotate(45deg) scale(1)", opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(45deg) scale(${0.7 + Math.random()*0.6})`, opacity: 0 }
+        ], {
+          duration: 650 + Math.random()*350,
+          easing: "cubic-bezier(.2,.8,.2,1)",
+          fill: "forwards"
+        });
+
+        b.appendChild(p);
+      }
+
+      setTimeout(() => b.remove(), 1200);
+    }
+  </script>
+</body>
+</html>
